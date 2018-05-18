@@ -22,12 +22,12 @@ public class Rocket : MonoBehaviour {
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W)) {
             rigidBody.AddRelativeForce(Vector3.up);
         }
-        if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)) {
-            print("Not Rotating!");
-        } else if (Input.GetKey(KeyCode.A)) {
-            print("Rotating Left!");
-        } else if (Input.GetKey(KeyCode.D)) {
-            print("Rotating Right!");
+        if (!(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))) {
+            if (Input.GetKey(KeyCode.A)) {
+                transform.Rotate(Vector3.forward);
+            } else if (Input.GetKey(KeyCode.D)) {
+                transform.Rotate(-Vector3.forward);
+            }
         }
     }
 }
