@@ -38,11 +38,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4429596269501458}
   - component: {fileID: 114301941272401624}
-  - component: {fileID: 54265876362793598}
   - component: {fileID: 82782226633339190}
+  - component: {fileID: 54516917755824236}
+  - component: {fileID: 114503380907910432}
   m_Layer: 0
   m_Name: Rocket
-  m_TagString: Untagged
+  m_TagString: Friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +122,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1140360762853276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.67, z: 0}
+  m_LocalPosition: {x: 0, y: 2.24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4637217870217306}
@@ -334,7 +335,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1998426101920116}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54265876362793598
+--- !u!54 &54516917755824236
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -342,7 +343,7 @@ Rigidbody:
   m_GameObject: {fileID: 1140360762853276}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.2
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -488,5 +489,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903159c10b4456d4491e4af17ebb72b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rcsThrust: 200
-  mainThrust: 40
+  rcsThrust: 150
+  mainThrust: 5
+--- !u!114 &114503380907910432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1140360762853276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903159c10b4456d4491e4af17ebb72b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rcsThrust: 100
+  mainThrust: 100
