@@ -2,14 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour {
-
     [SerializeField] float rcsThrust = 100f,
                            mainThrust = 100f;
 
     Rigidbody rigidBody;
     AudioSource audioSource;
+    float invokeWaitTime = 1f; // In Seconds
+
+    enum State { Alive, Dying, Transcending };
+    State gameState = State.Alive;
 
 	// Use this for initialization
 	void Start () {
@@ -19,22 +23,41 @@ public class Rocket : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Thrust();
-        Rotate();
+        if (gameState == State.Alive) {
+            Thrust();
+            Rotate();
+        }
     }
 
     void OnCollisionEnter(Collision collision) {
+        if(gameState != State.Alive) {
+            return;
+        }
+
         switch (collision.gameObject.tag) {
             case "Friendly":
-                print("Ok");
+                // DO NOTHING
                 break;
-            case "Fuel":
-                print("Fuel");
+            case "Finish":
+                gameState = State.Transcending;
+                Invoke("LoadNextScene", invokeWaitTime);
                 break;
             default:
-                print("Dead");
+                gameState = State.Dying;
+                audioSource.Stop();
+                rigidBody.constraints = RigidbodyConstraints.None;
+                Invoke("LoadFirstScene", invokeWaitTime);
                 break;
         }
+    }
+    
+
+    private void LoadFirstScene() {
+        SceneManager.LoadScene(0);
+    }
+
+    private void LoadNextScene() {
+        SceneManager.LoadScene(2); //TODO: Allow for more than two levels
     }
 
     private void Thrust() {
