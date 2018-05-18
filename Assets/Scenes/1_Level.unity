@@ -190,6 +190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903159c10b4456d4491e4af17ebb72b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rcsThrust: 100
+  mainThrust: 100
 --- !u!1001 &1462253488
 Prefab:
   m_ObjectHideFlags: 0
@@ -245,11 +247,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4997419097896494, guid: 477a3b4f0b562f241b2e346bfb39c128, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.5
+      value: 10.56
       objectReference: {fileID: 0}
     - target: {fileID: 4997419097896494, guid: 477a3b4f0b562f241b2e346bfb39c128, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -16.31
+      value: -31.52
       objectReference: {fileID: 0}
     - target: {fileID: 4997419097896494, guid: 477a3b4f0b562f241b2e346bfb39c128, type: 2}
       propertyPath: m_LocalRotation.x
@@ -366,6 +368,15 @@ Prefab:
     - target: {fileID: 4429596269501458, guid: 96ef64e5d402a324faf47d91538c5ef2, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114301941272401624, guid: 96ef64e5d402a324faf47d91538c5ef2,
+        type: 2}
+      propertyPath: mainThrust
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1140360762853276, guid: 96ef64e5d402a324faf47d91538c5ef2, type: 2}
+      propertyPath: m_TagString
+      value: Friendly
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 96ef64e5d402a324faf47d91538c5ef2, type: 2}
