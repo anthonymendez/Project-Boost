@@ -39,8 +39,6 @@ public class Rocket : MonoBehaviour {
 
     private void Thrust() {
         
-        // Take Manual Control of Rotation
-        rigidBody.freezeRotation = true;
 
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W)) {
             rigidBody.AddRelativeForce(Vector3.up * mainThrust);
@@ -49,12 +47,12 @@ public class Rocket : MonoBehaviour {
         } else {
             audioSource.Stop();
         }
-
-        // Release Manual Control of Rotation
-        rigidBody.freezeRotation = false;
     }
 
     private void Rotate() {
+
+        // Take Manual Control of Rotation
+        rigidBody.freezeRotation = true;
 
         // If we're not pressing A and D at the same time but one of them is being pressed then...
         if (!(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))) {
@@ -69,6 +67,9 @@ public class Rocket : MonoBehaviour {
                 transform.Rotate(-Vector3.forward * rotationThrustThisFrame);
             }
         }
-        
+
+        // Release Manual Control of Rotation
+        rigidBody.freezeRotation = false;
+
     }
 }
