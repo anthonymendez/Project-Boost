@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Rocket : MonoBehaviour {
 
+    [SerializeField] float rcsThrust = 100f,
+                           mainThrust = 100f;
+
     Rigidbody rigidBody;
     AudioSource audioSource;
 
@@ -16,24 +19,42 @@ public class Rocket : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        ProcessInput();
-	}
+        Thrust();
+        Rotate();
+    }
 
-    private void ProcessInput() {
+    private void Thrust() {
+        
+        // Take Manual Control of Rotation
+        rigidBody.freezeRotation = true;
 
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W)) {
-            rigidBody.AddRelativeForce(Vector3.up);
-            if(!audioSource.isPlaying)
+            rigidBody.AddRelativeForce(Vector3.up * mainThrust);
+            if (!audioSource.isPlaying)
                 audioSource.Play();
         } else {
-            audioSource.Pause();
+            audioSource.Stop();
         }
+
+        // Release Manual Control of Rotation
+        rigidBody.freezeRotation = false;
+    }
+
+    private void Rotate() {
+
+        // If we're not pressing A and D at the same time but one of them is being pressed then...
         if (!(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))) {
+            float rotationThrustThisFrame = rcsThrust * Time.deltaTime;
+
+            // ...we check if we're pressing the A key to rotate left
             if (Input.GetKey(KeyCode.A)) {
-                transform.Rotate(Vector3.forward);
+                transform.Rotate(Vector3.forward * rotationThrustThisFrame);
+            
+            // ...if not we check if we're pressing the D key to rotate right
             } else if (Input.GetKey(KeyCode.D)) {
-                transform.Rotate(-Vector3.forward);
+                transform.Rotate(-Vector3.forward * rotationThrustThisFrame);
             }
         }
+        
     }
 }
