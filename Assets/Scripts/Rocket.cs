@@ -16,6 +16,8 @@ public class Rocket : MonoBehaviour {
                                     obstacleHitParticles;
     [SerializeField] float invokeWaitTime = 2.5f;
 
+    bool collisionsDisabled = false;
+
     Rigidbody rigidBody;
     AudioSource audioSource;
 
@@ -34,10 +36,21 @@ public class Rocket : MonoBehaviour {
             RespondToThrustInput();
             RespondToRotateInput();
         }
+
+        if (Debug.isDebugBuild) {
+            RespondtoDebugInput();
+        }
+    }
+
+    private void RespondtoDebugInput() {
+        if (Input.GetKey(KeyCode.C))
+            collisionsDisabled = !collisionsDisabled;
+        if (Input.GetKey(KeyCode.L))
+            LoadNextLevel();
     }
 
     void OnCollisionEnter(Collision collision) {
-        if(gameState != State.Alive) {
+        if(gameState != State.Alive || collisionsDisabled) {
             return;
         }
 
@@ -60,7 +73,7 @@ public class Rocket : MonoBehaviour {
         rigidBody.constraints = RigidbodyConstraints.None;
         audioSource.PlayOneShot(obstacleHit);
         obstacleHitParticles.Play();
-        Invoke("LoadFirstScene", invokeWaitTime);
+        Invoke("LoadFirstLevel", invokeWaitTime);
     }
 
     private void StartSuccessTransition() {
@@ -68,15 +81,15 @@ public class Rocket : MonoBehaviour {
         audioSource.Stop();
         audioSource.PlayOneShot(levelCompleted);
         levelCompletedParticles.Play();
-        Invoke("LoadNextScene", invokeWaitTime);
+        Invoke("LoadNextLevel", invokeWaitTime);
     }
 
-    private void LoadFirstScene() {
+    private void LoadFirstLevel() {
         SceneManager.LoadScene(0);
     }
 
-    private void LoadNextScene() {
-        SceneManager.LoadScene(2); //TODO: Allow for more than two levels
+    private void LoadNextLevel() {
+        SceneManager.LoadScene(1); //TODO: Allow for more than two levels
     }
 
     private void RespondToThrustInput() {
