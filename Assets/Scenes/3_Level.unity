@@ -37,8 +37,8 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 0.3
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.2512334, g: 0.28147545, b: 0.32638994, a: 0.3}
+  m_Sun: {fileID: 376897463}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.3}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -812,6 +812,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4667391667754824, guid: f64d4e5b170e66b4d8db57a1cc0c7632,
     type: 2}
   m_PrefabInternal: {fileID: 275251814}
+--- !u!108 &376897463 stripped
+Light:
+  m_PrefabParentObject: {fileID: 108485995414147410, guid: e3f10c7d3767d7141bdd77fdfd95d03b,
+    type: 2}
+  m_PrefabInternal: {fileID: 1739718551}
 --- !u!1001 &388430645
 Prefab:
   m_ObjectHideFlags: 0
