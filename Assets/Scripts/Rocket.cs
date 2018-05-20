@@ -14,9 +14,10 @@ public class Rocket : MonoBehaviour {
     [SerializeField] ParticleSystem mainEngineParticles,
                                     levelCompletedParticles,
                                     obstacleHitParticles;
+    [SerializeField] float invokeWaitTime = 2.5f;
+
     Rigidbody rigidBody;
     AudioSource audioSource;
-    float invokeWaitTime = 2.5f; // In Seconds
 
     enum State { Alive, Dying, Transcending };
     State gameState = State.Alive;
