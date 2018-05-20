@@ -2136,7 +2136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementVector: {x: 0, y: 17, z: 0}
-  movementFactor: 0
+  period: 2
 --- !u!1001 &1706652800
 Prefab:
   m_ObjectHideFlags: 0
